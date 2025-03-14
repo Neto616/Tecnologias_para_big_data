@@ -1,5 +1,6 @@
 import math #Importamos la libreria math para poder acceder a las funciones como la raiz cuadrada
-
+import pandas as np
+import matplotlib.pyplot as pl
 """
 Función para sacar la distancia Euclidiana de dos coordenadas
 recibe dos listas para sacar esta distancia
@@ -31,9 +32,9 @@ def kVecinos (datos, k, prediccion):
             conteo[resultado]= conteo[resultado] + 1
         else:
             conteo[resultado]= 1
-    print(conteo)
-    print(f"La repetición maxima es de: {max(conteo.values())}")
-    return max(conteo.values())
+
+    prediccion_final = max(conteo, key=conteo.get)
+    print(f"\nLa predicción es: {prediccion_final}")
 
 entrada:dict = {
     "horas":       (10, 15, 18, 20, 25, 30),
@@ -41,4 +42,14 @@ entrada:dict = {
     "resultados": ("Aprobado", "Aprobado", "Reprobado", "Reprobado")
 }
 
-kVecinos(entrada, 3, [17, 11])
+entrada2:dict = {
+    "duracion": (30, 45, 60, 20, 25, 40),
+    "calorias": (300, 450, 600, 120, 150, 200),
+    "Categoria": ("Aeróbico", "Aeróbico", "Aeróbico", "Fuerza", "Fuerza", "Fuerza")
+}
+
+#generarGrafica(entrada["horas"], entrada["asistencias"], entrada["resultados"], [17, 11])
+
+#kVecinos(entrada, 3, [17, 11])
+#kVecinos(entrada2, 3, [35, 320])
+kVecinos(entrada2, 5, [35, 320])
